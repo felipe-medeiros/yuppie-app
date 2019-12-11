@@ -9,8 +9,8 @@ class Aluno extends Model
     /**
      * @var string
      */
-    protected $attributes = [
-        'nome','data_nascimento','cep' => 5800000,'endereco' => 'Rua projetada','bairro','cidade','uf' 
+    protected $fillable = [
+        'nome','data_nascimento','cep','endereco','bairro','cidade','uf' 
     ];
 
     /**

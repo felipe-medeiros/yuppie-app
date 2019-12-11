@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Aluno;
 
 class AlunoController extends Controller
 {
@@ -13,7 +14,9 @@ class AlunoController extends Controller
      */
     public function index()
     {
-        //
+        $alunos = Aluno::all();
+
+        return view('alunos.index', compact('alunos'));
     }
 
     /**
@@ -23,7 +26,7 @@ class AlunoController extends Controller
      */
     public function create()
     {
-        //
+        return view('alunos.create');
     }
 
     /**
@@ -34,7 +37,19 @@ class AlunoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cepInt = (int)$request->get('cep');
+        $aluno = new Aluno([
+            'nome'           => $request->get('nome'),
+            'data_nascimento'=> $request->get('data_nascimento'),
+            'cep'            => $cepInt,
+            'endereco'       => $request->get('endereco'),
+            'turma_id'       => $request->get('turma_id'),
+            'bairo'          => $request->get('bairro'),
+            'cidade'         => $request->get('cidade'),
+            'uf'             => $request->get('uf')
+        ]);
+        $aluno->save();
+        return redirect('/alunos')->with('success', 'Aluno adicionado');
     }
 
     /**
