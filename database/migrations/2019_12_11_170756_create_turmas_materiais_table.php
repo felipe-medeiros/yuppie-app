@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAlunosTable extends Migration
+class CreateTurmasMateriaisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateAlunosTable extends Migration
      */
     public function up()
     {
-        Schema::create('alunos', function (Blueprint $table) {
+        Schema::create('turmas_materiais', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
-            $table->date('data_nascimento');
-            $table->bigInteger('cep');
-            $table->string('endereco');
-            $table->string('cidade');
-            $table->string('uf');
             $table->unsignedInteger('turma_id');
+            $table->unsignedInteger('produto_id');
             $table->foreign('turma_id')->references('id')->on('turmas');
+            $table->foreign('produto_id')->references('id')->on('produtos');
         });
     }
 
@@ -33,6 +29,6 @@ class CreateAlunosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alunos');
+        Schema::dropIfExists('turmas_materiais');
     }
 }

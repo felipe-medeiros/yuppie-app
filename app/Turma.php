@@ -7,16 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Turma extends Model
 {
     /**
-     * Sobrescrevendo o nome da tabela
-     * 
-     * @var string
-     */
-    protected $table = 'Turmas'
-
-    /**
      * @var string
      */
     protected $nome;
+
+    /**
+     * Definindo relacionamento com Alunos
+     */
+    public function alunos(){
+        return $this->hasMany('App\Aluno');
+    }
+
+    /**
+     * Relacionamento com Produtos
+     */
+    public function produtos(){
+        return $this->belongsToMany('App\Produto');
+    }
 
     /**
      * Dispensando o uso de timestamps

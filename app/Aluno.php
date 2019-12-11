@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Aluno extends Model
 {
     /**
-     * Sobrescrevendo o nome da tabela
-     * 
-     * @var string
-     */
-    protected $table = 'Alunos';
-
-    /**
      * @var string
      */
     protected $attributes = [
         'nome','data_nascimento','cep' => 5800000,'endereco' => 'Rua projetada','bairro','cidade','uf' 
     ];
+
+    /**
+     * Definindo relacionamento com Turmas
+     */
+    public function turma(){
+        return $this->belongsTo('App\Turma');
+    }
 
     /**
      * Dispensando o uso de timestamps

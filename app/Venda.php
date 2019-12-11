@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Venda extends Model
 {
     /**
-     * Sobrescrevendo o nome da tabela
-     * 
-     * @var string
-     */
-    protected $table = 'Vendas';
-
-    /**
      * @var array
      */
     protected $fillable = [
         'data', 'finalizada'
     ];
+
+    /**
+     * Relacionamento com Produtos
+     */
+    public function produtos(){
+        return $this->belongsToMany('App\Produto');
+    }
 
     /**
      * Dispensando o uso de timestamps
