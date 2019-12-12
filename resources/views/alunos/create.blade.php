@@ -1,6 +1,6 @@
 <html>
     <head>
-    <title>Form Aluno</title>
+    <title>Cadastro Aluno</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <!-- Adicionando JQuery -->
@@ -12,6 +12,17 @@
     <script type="text/javascript" >
 
         $(document).ready(function() {
+            @isset($aluno)
+                $('#id').val("{{ $aluno->id }}");
+                $('#nome').val("{{ $aluno->nome }}");
+                $('#cep').val("{{ $aluno->cep }}");
+                $('#bairro').val("{{ $aluno->bairro }}");
+                $('#endereco').val("{{ $aluno->endereco }}");
+                $('#cidade').val("{{ $aluno->cidade }}");
+                $('#uf').val("{{ $aluno->uf }}");
+                $('#turma_id').val("{{ $aluno->turma_id }}");
+                $('#data_nascimento').val("{{ $aluno->data_nascimento }}");
+            @endisset
 
             function limpa_formulário_cep() {
                 // Limpa valores do formulário de cep.
@@ -74,7 +85,6 @@
                 }
             });
         });
-
     </script>
     </head>
 
@@ -82,12 +92,15 @@
     <!-- Inicio do formulario -->
       <form method="post" action="{{ route('alunos.store') }}">
         @csrf
+        <?php $count = 1; ?>
         <label>Turma:
         <select name="turma_id" id="turma_id">
-            <option value="1">PHP 1</option>
-            <option value="2">PHP 2</option>
-            <option value="3">PHP 3</option>
+        @foreach($turmas as $turma)
+            <option value="<?=$count?>">{{ $turma }}</option>
+            <?php $count++; ?>
+        @endforeach
         </select></label><br><br>
+        <input type="hidden" name="id" id="id" value="">
         <label>Nome:
         <input name="nome" type="text" id="nome" size="60"></label><br /><br />
         <label>Data de Nascimento
@@ -102,7 +115,7 @@
         <input name="cidade" type="text" id="cidade" size="40" /></label><br /><br />
         <label>Estado:
         <input name="uf" type="text" id="uf" size="2" /></label><br /><br />
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
       </form>
     </body>
 

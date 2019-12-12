@@ -17,6 +17,7 @@
           <td>Bairro</td>
           <td>Cidade</td>
           <td>UF</td>
+          <td>Turma</td>
           <td colspan="2"></td>
         </tr>
     </thead>
@@ -31,6 +32,7 @@
             <td>{{$aluno->bairro}}</td>
             <td>{{$aluno->cidade}}</td>
             <td>{{$aluno->uf}}</td>
+            <td></td>
             <td><a href="{{ route('alunos.edit',$aluno->id)}}" class="btn btn-primary">Editar</a></td>
             <td>
                 <form action="{{ route('alunos.destroy', $aluno->id)}}" method="post">

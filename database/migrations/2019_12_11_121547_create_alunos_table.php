@@ -17,9 +17,10 @@ class CreateAlunosTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->date('data_nascimento');
-            $table->bigInteger('cep');
+            $table->unsignedBigInteger('cep');
             $table->string('endereco');
             $table->string('cidade');
+            $table->string('bairro');
             $table->string('uf');
             $table->unsignedInteger('turma_id');
             $table->foreign('turma_id')->references('id')->on('turmas');

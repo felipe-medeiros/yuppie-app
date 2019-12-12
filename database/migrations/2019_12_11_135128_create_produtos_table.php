@@ -17,7 +17,7 @@ class CreateProdutosTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->bigInteger('estoque');
-            $table->float('preco', 10, 2);
+            $table->float('preco', 8, 2);
         });
     }
 
