@@ -47,12 +47,13 @@ class AlunoController extends Controller
         //instanciando a turma selecionada
         $turma = Turma::find( $request->turma_id );
 
-        //Traz o aluno se já existe(update) ou cria um novo(create)
+        //traz o aluno se já existe(update) ou cria um novo(create)
         $aluno = Aluno::firstOrNew( ['id' => $request->id] );
            
         //associando à turma
         $aluno->turma()->associate( $turma );
 
+        //verifica se existe a model de aluno(diferencia model de instância)
         if($aluno->exists){
             $aluno->update( $request->all() );
         }else{
@@ -86,18 +87,6 @@ class AlunoController extends Controller
         $turmas = Turma::pluck('nome','id');
 
         return view('alunos.create', compact('turmas'), compact('aluno'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**

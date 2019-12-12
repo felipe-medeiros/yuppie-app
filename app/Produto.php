@@ -11,8 +11,8 @@ class Produto extends Model
      * 
      * @var array
      */
-    protected $attributes = [
-        'nome','estoque' => 0
+    protected $fillable = [
+        'nome','estoque'
     ];
 
     /**
@@ -20,7 +20,7 @@ class Produto extends Model
      * 
      * @var float
      */
-    protected $preco;
+    protected $preco = 0.00;
 
     /**
      * Relacionamento com Turmas

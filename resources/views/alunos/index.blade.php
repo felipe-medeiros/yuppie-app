@@ -1,11 +1,5 @@
 <html>
-    <body>
-    <div class="uper">
-  @if(session()->get('success'))
-    <div class="alert alert-success">
-      {{ session()->get('success') }}  
-    </div><br />
-  @endif
+<body>
   <table class="table table-striped">
     <thead>
         <tr>
@@ -32,8 +26,8 @@
             <td>{{$aluno->bairro}}</td>
             <td>{{$aluno->cidade}}</td>
             <td>{{$aluno->uf}}</td>
-            <td></td>
-            <td><a href="{{ route('alunos.edit',$aluno->id)}}" class="btn btn-primary">Editar</a></td>
+            <td>{{$aluno->turma->nome}}</td>
+            <td><button href="{{ route('alunos.edit',$aluno->id)}}" class="btn btn-primary">Editar</button></td>
             <td>
                 <form action="{{ route('alunos.destroy', $aluno->id)}}" method="post">
                   @csrf
@@ -45,11 +39,10 @@
         @endforeach
     </tbody>
   </table>
+
   <form action="{{ route('alunos.create')}}" method="get">
-    @csrf
     <button type=submit class="btn btn-primary">Novo Aluno</button>
   </form>
   
-<div>
-    </body>
+</body>
 </html>

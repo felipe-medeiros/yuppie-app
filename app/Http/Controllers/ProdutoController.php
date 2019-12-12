@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Produto;
+
+use League\Csv\Reader;
 
 class ProdutoController extends Controller
 {
@@ -13,7 +16,9 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        //
+        $produtos = Produto::all();
+
+        return view('produtos.index', compact('produtos'));
     }
 
     /**
@@ -23,7 +28,7 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        //
+        return view('produtos.create');
     }
 
     /**
@@ -34,7 +39,21 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //verifica se há arquivo csv
+        if(isset($request->csv)){
+            $csv = Reader::crea
+        }
+
+        //traz o produto se já existe(update) ou cria um novo(create)
+        $produto = Produto::firstOrNew( ['id' => $request->id] );
+
+        //verifica se existe a model de produto(diferencia model de instância)
+        if($produto->exists){
+            $produto->update( $request->all() );
+        }else{
+            $produto->fill( $request->all() );
+            $produto->save();
+        }
     }
 
     /**
@@ -56,7 +75,9 @@ class ProdutoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $produto = Produto::find($id);
+
+        return view('produtos.create', compact('produto'));
     }
 
     /**
@@ -79,6 +100,8 @@ class ProdutoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Produto::destroy($id);
+
+        return redirect('/produtos')->with('success', 'Produto removido');
     }
 }

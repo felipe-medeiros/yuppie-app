@@ -11,8 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('turmas')->insert(['nome' => 'PHP']);
-        DB::table('turmas')->insert(['nome' => 'Java']);
-        DB::table('turmas')->insert(['nome' => 'Ruby']);
+        DB::table('turmas')->insert(['nome' => '1º ANO']);
+        DB::table('turmas')->insert(['nome' => '2º ANO']);
+        DB::table('turmas')->insert(['nome' => '3º ANO']);
+        DB::table('turmas')->insert(['nome' => '4º ANO']);
     }
 }

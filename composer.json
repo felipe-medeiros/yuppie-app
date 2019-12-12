@@ -9,11 +9,12 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "cagartner/correios-consulta": "0.1.*",
+        "canducci/cep": "2.0.*",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
-        "canducci/cep": "2.0.*",
-        "cagartner/correios-consulta": "0.1.*"
+        "league/csv": "^9.4"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
