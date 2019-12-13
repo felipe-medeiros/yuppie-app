@@ -26,7 +26,7 @@ class Produto extends Model
      * Relacionamento com Vendas
      */
     public function vendas(){
-        return $this->belongsToMany('App\Venda');
+        return $this->belongsToMany('App\Venda', 'produto_turma');
     }
 
     /**

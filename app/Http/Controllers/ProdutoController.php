@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Produto;
+use App\Turma;
 
 class ProdutoController extends Controller
 {
@@ -54,12 +55,38 @@ class ProdutoController extends Controller
     public function storeFromCSV()
     {
         $produtos_turmas = session()->get('produtos_turmas');
-        foreach($produtos_turmas as $produto){
-            Produto::create([
-                'nome'    => $produto[ 0 ],
-                'preco'   => (float) str_replace(',','.',$produto[ 1 ]),
-                'estoque' => (int) $produto[ 2 ]
+
+        $cabecalho = $produtos_turmas[0];
+        array_shift($produtos_turmas);
+
+        foreach($produtos_turmas as $produto_array){
+
+            $produto = Produto::create([
+                'nome'    => $produto_array[ 0 ],
+                'preco'   => (float) str_replace(',','.',$produto_array[ 1 ]),
+                'estoque' => (int) $produto_array[ 2 ]
             ]);
+
+            if ( strlen($produto_array[3]) > 0 ) {
+                $turma = Turma::where('nome', $cabecalho[3])->first();
+                $produto->turmas()->attach( $turma );
+            }
+
+            if ( strlen($produto_array[4]) > 0 ) {
+                $turma = Turma::where('nome', $cabecalho[4])->first();
+                $produto->turmas()->attach( $turma );
+            }
+
+            if ( strlen($produto_array[5]) > 0 ) {
+                $turma = Turma::where('nome', $cabecalho[5])->first();
+                $produto->turmas()->attach( $turma );
+            }
+
+            if ( strlen($produto_array[6]) > 0 ) {
+                $turma = Turma::where('nome', $cabecalho[6])->first();
+                $produto->turmas()->attach( $turma );
+            }
+
         }
 
         return redirect('/produtos')->with('success', 'Produtos adicionados');

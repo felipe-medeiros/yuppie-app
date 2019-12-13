@@ -21,7 +21,6 @@ class UploadFileController extends Controller
         //separando linhas em arrays
         $linhas = explode("\n", $conteudo);
         array_pop($linhas);
-        array_shift($linhas);
         
         //montando a matriz
         $produtos_turmas = array_fill(0,15,'');

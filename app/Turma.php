@@ -22,7 +22,7 @@ class Turma extends Model
      * Relacionamento com Produtos
      */
     public function produtos(){
-        return $this->belongsToMany('App\Produto');
+        return $this->belongsToMany('App\Produto', 'produto_turma');
     }
 
     /**

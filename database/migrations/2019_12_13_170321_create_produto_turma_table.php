@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTurmasMateriaisTable extends Migration
+class CreateProdutoTurmaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateTurmasMateriaisTable extends Migration
      */
     public function up()
     {
-        Schema::create('turmas_materiais', function (Blueprint $table) {
+        Schema::create('produto_turma', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('turma_id');
             $table->unsignedInteger('produto_id');
+            $table->unsignedInteger('turma_id');
             $table->foreign('turma_id')->references('id')->on('turmas');
             $table->foreign('produto_id')->references('id')->on('produtos');
         });
@@ -29,6 +29,6 @@ class CreateTurmasMateriaisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('turmas_materiais');
+        Schema::dropIfExists('produto_turma');
     }
 }
