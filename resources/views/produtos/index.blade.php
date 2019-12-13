@@ -18,7 +18,7 @@
             <td>{{$produto->estoque}}</td>
             <td>{{$produto->preco}}</td>
             <td></td>
-            <td><a href="{{ route('produtos.edit',$produto->id)}}" class="btn btn-primary">Editar</a></td>
+            <td><a href="{{ route('produtos.edit', $produto->id)}}" class="btn btn-primary">Editar</a></td>
             <td>
                 <form action="{{ route('produtos.destroy', $produto->id)}}" method="post">
                   @csrf

@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Produto;
 
-use League\Csv\Reader;
-
 class ProdutoController extends Controller
 {
     /**
@@ -39,14 +37,9 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //verifica se há arquivo csv
-        if(isset($request->csv)){
-            $csv = Reader::crea
-        }
-
         //traz o produto se já existe(update) ou cria um novo(create)
         $produto = Produto::firstOrNew( ['id' => $request->id] );
-
+            
         //verifica se existe a model de produto(diferencia model de instância)
         if($produto->exists){
             $produto->update( $request->all() );
@@ -54,6 +47,22 @@ class ProdutoController extends Controller
             $produto->fill( $request->all() );
             $produto->save();
         }
+
+        return redirect('/produtos')->with('success', 'Produto adicionado');
+    }
+
+    public function storeFromCSV()
+    {
+        $produtos_turmas = session()->get('produtos_turmas');
+        foreach($produtos_turmas as $produto){
+            Produto::create([
+                'nome'    => $produto[ 0 ],
+                'preco'   => (float) str_replace(',','.',$produto[ 1 ]),
+                'estoque' => (int) $produto[ 2 ]
+            ]);
+        }
+
+        return redirect('/produtos')->with('success', 'Produtos adicionados');
     }
 
     /**

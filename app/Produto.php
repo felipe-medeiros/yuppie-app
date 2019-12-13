@@ -12,15 +12,8 @@ class Produto extends Model
      * @var array
      */
     protected $fillable = [
-        'nome','estoque'
+        'nome','estoque','preco'
     ];
-
-    /**
-     * Atributo crítico, protegido contra ataques com SQL via HTTP
-     * 
-     * @var float
-     */
-    protected $preco = 0.00;
 
     /**
      * Relacionamento com Turmas

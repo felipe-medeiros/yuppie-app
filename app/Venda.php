@@ -17,7 +17,7 @@ class Venda extends Model
      * Relacionamento com Produtos
      */
     public function produtos(){
-        return $this->belongsToMany('App\Produto');
+        return $this->belongsToMany('App\Produto')->withPivot('preco','quantidade');
     }
 
     /**

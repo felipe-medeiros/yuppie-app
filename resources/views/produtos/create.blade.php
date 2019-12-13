@@ -24,6 +24,11 @@
 
     <body >
     <!-- Inicio do formulario -->
+    <form enctype="multipart/form-data" action="{{ route('upload') }}" method="post">
+      @csrf
+      <input type="file" name="arquivo" id="arquivo"><br><br>
+      <button type="submit">Enviar</button>
+    </form><br><br>
       <form method="post" action="{{ route('produtos.store') }}">
         @csrf
         <input type="hidden" name="id" id="id" value="">
@@ -33,7 +38,6 @@
         <input type="number" name="estoque" id="estoque"></label><br /><br />
         <label>Preço:
         <input name="preco" type="number" id="cep" value="" min="0.00" max="99999.99" step="0.01" /></label><br /><br />
-        <input type="file" name="csv" id="csv"><br><br>
         <button type="submit" class="btn btn-primary">Salvar</button>
       </form>
     </body>
