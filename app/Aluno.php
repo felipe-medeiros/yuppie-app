@@ -14,7 +14,14 @@ class Aluno extends Model
     ];
 
     /**
-     * Definindo relacionamento com Turmas
+     * Relacionamento com Vendas
+     */
+    public function vendas(){
+        return $this->hasMany('App\Venda');
+    }
+
+    /**
+     * Relacionamento com Turmas
      */
     public function turma(){
         return $this->belongsTo('App\Turma');

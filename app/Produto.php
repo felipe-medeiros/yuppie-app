@@ -19,14 +19,14 @@ class Produto extends Model
      * Relacionamento com Turmas
      */
     public function turmas(){
-        return $this->belongsToMany('App\Turma');
+        return $this->belongsToMany('App\Turma', 'turmas_materiais');
     }
 
     /**
      * Relacionamento com Vendas
      */
     public function vendas(){
-        return $this->belongsToMany('App\Venda', 'produto_turma');
+        return $this->belongsToMany('App\Venda', 'vendas_itens')->withPivot('preco','quantidade');
     }
 
     /**

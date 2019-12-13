@@ -34,6 +34,7 @@
   <form action="{{ route('produtos.create')}}" method="get">
     <button type=submit class="btn btn-primary">Novo produto</button>
   </form>
+  <a href="/">Home</a>
   
 </body>
 </html>

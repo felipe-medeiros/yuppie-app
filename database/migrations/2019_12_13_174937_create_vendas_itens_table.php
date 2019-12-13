@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProdutoTurmaTable extends Migration
+class CreateVendasItensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateProdutoTurmaTable extends Migration
      */
     public function up()
     {
-        Schema::create('turmas_materiais', function (Blueprint $table) {
+        Schema::create('vendas_itens', function (Blueprint $table) {
             $table->increments('id');
+            $table->float('preco', 8, 2);
+            $table->integer('quantidade');
+            $table->unsignedInteger('venda_id');
             $table->unsignedInteger('produto_id');
-            $table->unsignedInteger('turma_id');
-            $table->foreign('turma_id')->references('id')->on('turmas')->onDelete('cascade');
+            $table->foreign('venda_id')->references('id')->on('vendas')->onDelete('cascade');
             $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
         });
     }
@@ -29,6 +31,6 @@ class CreateProdutoTurmaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('turmas_materiais');
+        Schema::dropIfExists('vendas_itens');
     }
 }

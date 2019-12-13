@@ -14,10 +14,17 @@ class Venda extends Model
     ];
 
     /**
+     * Relacionamento com Alunos
+     */
+    public function aluno(){
+        return $this->belongsTo('App\Aluno');
+    }
+
+    /**
      * Relacionamento com Produtos
      */
     public function produtos(){
-        return $this->belongsToMany('App\Produto')->withPivot('preco','quantidade');
+        return $this->belongsToMany('App\Produto', 'vendas_itens')->withPivot('preco','quantidade');
     }
 
     /**

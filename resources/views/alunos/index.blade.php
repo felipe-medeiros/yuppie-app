@@ -43,6 +43,6 @@
   <form action="{{ route('alunos.create')}}" method="get">
     <button type=submit class="btn btn-primary">Novo Aluno</button>
   </form>
-  
+  <a href="/">Home</a>
 </body>
 </html>

@@ -23,7 +23,7 @@ class CreateAlunosTable extends Migration
             $table->string('bairro');
             $table->string('uf');
             $table->unsignedInteger('turma_id');
-            $table->foreign('turma_id')->references('id')->on('turmas');
+            $table->foreign('turma_id')->references('id')->on('turmas')->onDelete('cascade');
         });
     }
 

@@ -9,18 +9,20 @@
             crossorigin="anonymous"></script>
 
     <!-- Adicionando Javascript -->
-    @isset($produto)
     <script type="text/javascript" >
     
-        $(document).ready(function() {
-                $('#id').val("{{ $produto->id }}");
-                $('#nome').val("{{ $produto->nome }}");
-                $('#estoque').val("{{ $produto->estoque }}");
-                $('#preco').val("{{ $produto->preco }}");
-        }
+    $(document).ready(function() {
+      @isset($produto)
+          $('#id').val("{{ $produto->id }}");
+          $('#nome').val("{{ $produto->nome }}");
+          $('#estoque').val("{{ $produto->estoque }}");
+          $('#preco').val("{{ $produto->preco }}");
+      @endisset
+    });
 
     </script>
-    @endisset
+    
+    </head>
 
     <body >
     <!-- Inicio do formulario -->

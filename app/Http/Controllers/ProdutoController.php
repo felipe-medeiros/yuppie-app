@@ -56,9 +56,11 @@ class ProdutoController extends Controller
     {
         $produtos_turmas = session()->get('produtos_turmas');
 
+        //separando o cabeçalho
         $cabecalho = $produtos_turmas[0];
         array_shift($produtos_turmas);
 
+        //iterando o array já cadastrando o produto e turmas_materias se houver relacionamento com turmas
         foreach($produtos_turmas as $produto_array){
 
             $produto = Produto::create([
@@ -116,17 +118,6 @@ class ProdutoController extends Controller
         return view('produtos.create', compact('produto'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

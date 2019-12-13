@@ -24,6 +24,7 @@
                 <div class="links">
                     <a href="{{ route('alunos.index') }}">Alunos</a>
                     <a href="{{ route('produtos.index') }}">Produtos</a>
+                    <a href="{{ route('nova') }}">Nova Venda</a>
                 </div>
             </div>
         </div>

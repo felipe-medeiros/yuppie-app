@@ -18,7 +18,7 @@ class CreateVendasTable extends Migration
             $table->date('data');
             $table->boolean('finalizada');
             $table->unsignedInteger('aluno_id');
-            $table->foreign('aluno_id')->references('id')->on('alunos');
+            $table->foreign('aluno_id')->references('id')->on('alunos')->onDelete('cascade');
         });
     }
 
