@@ -9,7 +9,7 @@ class Turma extends Model
     /**
      * @var string
      */
-    protected $nome;
+    protected $fillable = ['nome'];
 
     /**
      * Definindo relacionamento com Alunos

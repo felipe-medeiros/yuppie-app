@@ -58,17 +58,26 @@ class ProdutoController extends Controller
 
         //separando o cabeçalho
         $cabecalho = $produtos_turmas[0];
-        var_dump($produtos_turmas);
         array_shift($produtos_turmas);
+        
+
+        // extraindo as turmas
+        $turmas = array_slice($cabecalho, 3);
+
+        foreach($turmas as $turma){
+            Turma::firstOrCreate(['nome' => $turma]);
+        }
 
         //iterando o array já cadastrando o produto e turmas_materias se houver relacionamento com turmas
         foreach($produtos_turmas as $produto_array){
 
-            $produto = Produto::create([
-                'nome'    => $produto_array[ 0 ],
-                'preco'   => (float) str_replace(',','.',$produto_array[ 1 ]),
-                'estoque' => (int) $produto_array[ 2 ]
+            $produto = Produto::firstOrNew([
+                'nome' => $produto_array[ 0 ]
             ]);
+
+            $produto->preco =  (float) str_replace(',','.',$produto_array[ 1 ]);
+            $produto->estoque   += (int) $produto_array[ 2 ];
+            $produto->save();
 
             if ( strlen($produto_array[3]) > 0 ) {
                 $turma = Turma::where('nome', $cabecalho[3])->first();
