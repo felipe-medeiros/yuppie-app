@@ -19,6 +19,7 @@ class CreateVendasTable extends Migration
             $table->boolean('finalizada');
             $table->unsignedInteger('aluno_id');
             $table->foreign('aluno_id')->references('id')->on('alunos')->onDelete('cascade');
+            $table->index('aluno_id');
         });
     }
 

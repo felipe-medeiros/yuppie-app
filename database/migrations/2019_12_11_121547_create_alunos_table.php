@@ -24,6 +24,7 @@ class CreateAlunosTable extends Migration
             $table->string('uf');
             $table->unsignedInteger('turma_id');
             $table->foreign('turma_id')->references('id')->on('turmas')->onDelete('cascade');
+            $table->index('turma_id');
         });
     }
 

@@ -21,6 +21,7 @@ class CreateVendasItensTable extends Migration
             $table->unsignedInteger('produto_id');
             $table->foreign('venda_id')->references('id')->on('vendas')->onDelete('cascade');
             $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
+            $table->index(['venda_id','produto_id']);
         });
     }
 

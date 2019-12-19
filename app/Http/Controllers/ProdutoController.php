@@ -58,6 +58,7 @@ class ProdutoController extends Controller
 
         //separando o cabeçalho
         $cabecalho = $produtos_turmas[0];
+        var_dump($produtos_turmas);
         array_shift($produtos_turmas);
 
         //iterando o array já cadastrando o produto e turmas_materias se houver relacionamento com turmas
