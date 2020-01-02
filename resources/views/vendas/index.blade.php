@@ -1,5 +1,11 @@
-<html>
-<body>
+@extends('layouts.app')   
+
+@section('content')
+
+<br><h4>Vendas Efetuadas</h4>
+  <form action="{{ route('nova')}}" method="get">
+    <button type=submit class="btn btn-primary">Nova venda</button>
+  </form><br>
   <table class="table table-striped">
     <thead>
         <tr>
@@ -18,7 +24,5 @@
         @endforeach
     </tbody>
   </table><br>
-  <a href="/">Home</a>
   
-</body>
-</html>
+@endsection

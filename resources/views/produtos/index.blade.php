@@ -1,5 +1,11 @@
-<html>
-<body>
+@extends('layouts.app')   
+
+@section('content')
+
+<br><h4>Produtos Cadastrados</h4>
+  <form action="{{ route('produtos.create')}}" method="get">
+    <button type=submit class="btn btn-primary">Novo produto</button>
+  </form><br>
   <table class="table table-striped">
     <thead>
         <tr>
@@ -30,11 +36,5 @@
         @endforeach
     </tbody>
   </table>
-
-  <form action="{{ route('produtos.create')}}" method="get">
-    <button type=submit class="btn btn-primary">Novo produto</button>
-  </form>
-  <a href="/">Home</a>
   
-</body>
-</html>
+@endsection

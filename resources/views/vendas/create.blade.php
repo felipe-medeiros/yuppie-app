@@ -1,17 +1,11 @@
-<html>
-    <head>
-    <title>Cadastro Produto</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+@extends('layouts.app')   
 
-    <!-- Adicionando JQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous">
-    </script>
-    
-    </head>
+@section('content')
 
-    <body >
+<link href="../css/style.css" rel="stylesheet">
+
+<br><h4>Novo Produto</h4><br>
+  
     <!-- Inicio do formulario -->
       <form method="post" action="{{ route('efetua') }}">
         @csrf
@@ -34,7 +28,5 @@
 
         <button type="submit" class="btn btn-primary">Comprar</button>
       </form>
-      <a href="/">Home</a>
-    </body>
 
-    </html>
+@endsection

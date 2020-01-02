@@ -27,8 +27,13 @@ html, body {
     top: 18px;
 }
 
+.container {
+    height: 100vh;
+}
+
 .content {
     text-align: center;
+    margin: 200px;
 }
 
 .title {

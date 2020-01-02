@@ -1,7 +1,8 @@
-<html>
-    <head>
-    <title>Cadastro Aluno</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+@extends('layouts.app')   
+
+@section('content')
+
+    <link href="../css/style.css" rel="stylesheet">
 
     <!-- Adicionando JQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -86,13 +87,14 @@
             });
         });
     </script>
-    </head>
 
-    <body >
     <!-- Inicio do formulario -->
+    <br>
+        <h3>Novo Aluno</h3><br>
       <form method="post" action="{{ route('alunos.store') }}">
         @csrf
         <?php $count = 1; ?>
+
         <label>Turma:
         <select name="turma_id" id="turma_id">
         @foreach($turmas as $turma)
@@ -100,24 +102,30 @@
             <?php $count++; ?>
         @endforeach
         </select></label><br><br>
+
         <input type="hidden" name="id" id="id" value="">
         <label>Nome:
         <input name="nome" type="text" id="nome" size="60"></label><br /><br />
+
         <label>Data de Nascimento
         <input type="date" name="data_nascimento" id="data_nascimento"></label><br /><br />
+
         <label>Cep:
         <input name="cep" type="text" id="cep" value="" size="10" maxlength="9" /></label><br /><br />
+
         <label>Endereço:
         <input name="endereco" type="text" id="endereco" size="60" /></label><br /><br />
+
         <label>Bairro:
         <input name="bairro" type="text" id="bairro" size="40" /></label><br /><br />
+
         <label>Cidade:
         <input name="cidade" type="text" id="cidade" size="40" /></label><br /><br />
+
         <label>Estado:
         <input name="uf" type="text" id="uf" size="2" /></label><br /><br />
+
         <button type="submit" class="btn btn-primary">Salvar</button>
       </form>
-      <a href="/">Home</a>
-    </body>
-
-    </html>
+  
+@endsection
