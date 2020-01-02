@@ -29,11 +29,12 @@
             <input type="checkbox" value="{{ $produto->id }}" name="{{ $produto->nome }}"  >
 
             <label>Quantidade:
-            <input type="number" id="{{ $produto->nome }}"></label><br /><br />
+            <input type="number" name="{{ $produto->id }}"></label><br /><br />
         @endforeach
 
         <button type="submit" class="btn btn-primary">Comprar</button>
       </form>
+      <a href="/">Home</a>
     </body>
 
     </html>

@@ -19,7 +19,7 @@ class CreateProdutoTurmaTable extends Migration
             $table->unsignedInteger('turma_id');
             $table->foreign('turma_id')->references('id')->on('turmas')->onDelete('cascade');
             $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
-            $table->index(['produto_id','turma_id']);
+            $table->unique(['produto_id','turma_id']);
         });
     }
 

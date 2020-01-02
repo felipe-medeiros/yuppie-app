@@ -32,9 +32,11 @@ class VendaController extends Controller
 
         $comprados = $request->all();
 
+        //extraindo id de aluno e token do array, deixando apenas os produtos comprados
         $aluno_id = $comprados['aluno_id'];
-        array_shift($comprados);
-        array_shift($comprados);
+        unset($comprados['aluno_id']);
+        unset($comprados['_token']);
+        
         
         $aluno = Aluno::find($aluno_id);
         
@@ -42,17 +44,31 @@ class VendaController extends Controller
             'data' => Carbon::now(),
             'finalizada' => true
         ]);
+
         $venda->aluno()->associate( $aluno );
         $venda->save();
-
-        foreach ($comprados as $comprado) {
-
-            $comprado = Produto::where('id',$comprado)->first();
             
-            $comprado->vendas()->attach( $venda, [
-                'preco' => $comprado->preco,
-                'quantidade' => 1
-            ]);
+        foreach ($comprados as $key => $comprado) {
+            
+            if(gettype($key) === 'string'){
+
+                $comprado = Produto::where('id',$comprado)->first();
+
+                //atualizando o estoque
+                $quantidade = $comprados[(int)$comprado->id]; 
+                $comprado->estoque -= $quantidade;
+
+                
+                $comprado->save();
+                
+                $comprado->turmas()->syncWithoutDetaching( $aluno->turma->id );
+                
+                $comprado->vendas()->attach( $venda, [
+                    'preco'      => $comprado->preco,
+                    'quantidade' => $quantidade
+                ]);
+            }        
+                
         }
 
         return redirect ('/vendas')->with('succes', 'Venda concluída');

@@ -30,21 +30,20 @@ class UploadFileController extends Controller
         foreach( $linhas as $linha_s ){
             
             //transforma as linhas em array
-            $linha = explode(';', $linha_s );
-            array_pop( $linha );
+            $linha = explode("\t", $linha_s );
             
             $temp = 0;
             $produtos_turmas[$count] = array_fill($temp,7,'');
             
             foreach( $linha as $ele ){
-            
+                
                 $produtos_turmas[$count][$temp] = $ele;
                 $temp++;
-
+                
             }
             $count++;
         }
-
+        
         return redirect('produtos/mass_store')->with('produtos_turmas', $produtos_turmas);
     }
 }

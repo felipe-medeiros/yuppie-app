@@ -26,6 +26,13 @@ class Turma extends Model
     }
 
     /**
+     * Relacionamento com Vendas através de Alunos
+     */
+    public function vendas(){
+        return $this->hasManyThrough('App\Venda', 'App\Aluno');
+    }
+
+    /**
      * Dispensando o uso de timestamps
      * 
      * @var bool

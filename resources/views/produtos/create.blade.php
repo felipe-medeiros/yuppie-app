@@ -42,6 +42,7 @@
         <input name="preco" type="number" id="cep" value="" min="0.00" max="99999.99" step="0.01" /></label><br /><br />
         <button type="submit" class="btn btn-primary">Salvar</button>
       </form>
+      <a href="/">Home</a>
     </body>
 
     </html>

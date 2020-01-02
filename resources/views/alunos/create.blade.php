@@ -117,6 +117,7 @@
         <input name="uf" type="text" id="uf" size="2" /></label><br /><br />
         <button type="submit" class="btn btn-primary">Salvar</button>
       </form>
+      <a href="/">Home</a>
     </body>
 
     </html>

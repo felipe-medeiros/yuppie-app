@@ -38,18 +38,24 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //traz o produto se já existe(update) ou cria um novo(create)
+        //traz o produto se já existe ou cria um novo
         $produto = Produto::firstOrNew( ['id' => $request->id] );
             
         //verifica se existe a model de produto(diferencia model de instância)
         if($produto->exists){
+            
             $produto->update( $request->all() );
         }else{
-            $produto->fill( $request->all() );
-            $produto->save();
+            
+            $produto->fill(['nome'    => $request->nome,
+                            'estoque' => (int) $request->estoque,
+                            'preco'   => (float) $request->preco]);
+
+            // var_dump($produto);
+           $produto->save();
         }
 
-        return redirect('/produtos')->with('success', 'Produto adicionado');
+       return redirect('/produtos')->with('success', 'Produto adicionado');
     }
 
     public function storeFromCSV()
@@ -60,10 +66,10 @@ class ProdutoController extends Controller
         $cabecalho = $produtos_turmas[0];
         array_shift($produtos_turmas);
         
-
         // extraindo as turmas
         $turmas = array_slice($cabecalho, 3);
 
+        //armazenando as turmas
         foreach($turmas as $turma){
             Turma::firstOrCreate(['nome' => $turma]);
         }
@@ -75,9 +81,11 @@ class ProdutoController extends Controller
                 'nome' => $produto_array[ 0 ]
             ]);
 
-            $produto->preco =  (float) str_replace(',','.',$produto_array[ 1 ]);
-            $produto->estoque   += (int) $produto_array[ 2 ];
+            $produto->preco   =  (float) str_replace(',','.',$produto_array[ 1 ]);
+            $produto->estoque += (int) $produto_array[ 2 ];
             $produto->save();
+
+            var_dump($turmas_rel);
 
             if ( strlen($produto_array[3]) > 0 ) {
                 $turma = Turma::where('nome', $cabecalho[3])->first();
@@ -86,7 +94,7 @@ class ProdutoController extends Controller
 
             if ( strlen($produto_array[4]) > 0 ) {
                 $turma = Turma::where('nome', $cabecalho[4])->first();
-                $produto->turmas()->attach( $turma );
+                    $produto->turmas()->attach( $turma );
             }
 
             if ( strlen($produto_array[5]) > 0 ) {
