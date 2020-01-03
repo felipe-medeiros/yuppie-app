@@ -85,26 +85,24 @@ class ProdutoController extends Controller
             $produto->estoque += (int) $produto_array[ 2 ];
             $produto->save();
 
-            var_dump($turmas_rel);
-
             if ( strlen($produto_array[3]) > 0 ) {
                 $turma = Turma::where('nome', $cabecalho[3])->first();
-                $produto->turmas()->attach( $turma );
+                $produto->turmas()->syncWithoutDetaching( $turma->id );
             }
 
             if ( strlen($produto_array[4]) > 0 ) {
                 $turma = Turma::where('nome', $cabecalho[4])->first();
-                    $produto->turmas()->attach( $turma );
+                    $produto->turmas()->syncWithoutDetaching( $turma->id );
             }
 
             if ( strlen($produto_array[5]) > 0 ) {
                 $turma = Turma::where('nome', $cabecalho[5])->first();
-                $produto->turmas()->attach( $turma );
+                $produto->turmas()->syncWithoutDetaching( $turma->id );
             }
 
             if ( strlen($produto_array[6]) > 0 ) {
                 $turma = Turma::where('nome', $cabecalho[6])->first();
-                $produto->turmas()->attach( $turma );
+                $produto->turmas()->syncWithoutDetaching( $turma->id );
             }
 
         }

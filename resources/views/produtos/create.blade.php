@@ -1,7 +1,6 @@
-<html>
-    <head>
-    <title>Cadastro Produto</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+@extends('layouts.app')   
+
+@section('content')
 
     <!-- Adicionando JQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -26,11 +25,13 @@
 
     <body >
     <!-- Inicio do formulario -->
+    <br><h4>Cadastro por aquivo .csv:</h4><br>
     <form enctype="multipart/form-data" action="{{ route('upload') }}" method="post">
       @csrf
       <input type="file" name="arquivo" id="arquivo"><br><br>
       <button type="submit">Enviar</button>
-    </form><br><br>
+      <br><br><h4>Cadastro por formulário:</h4><br>
+    </form>
       <form method="post" action="{{ route('produtos.store') }}">
         @csrf
         <input type="hidden" name="id" id="id" value="">
@@ -42,7 +43,5 @@
         <input name="preco" type="number" id="cep" value="" min="0.00" max="99999.99" step="0.01" /></label><br /><br />
         <button type="submit" class="btn btn-primary">Salvar</button>
       </form>
-      <a href="/">Home</a>
-    </body>
 
-    </html>
+@endsection
